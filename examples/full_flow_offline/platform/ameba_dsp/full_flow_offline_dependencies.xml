@@ -1,0 +1,17 @@
+<OverriddenSettings>
+    <OverriddenSettingsEntry>
+        <key>full_flow_offline</key>
+        <value path="full_flow_offline">
+            <PreprocessorOptions>
+                <StringListMapOptions>
+                    <StringListMapEntry>
+                        <key>Includes</key>
+                        <value flag="-I" inheritance="prepend">
+                            <ListEntry>${workspace_loc}/../lib/aivoice/examples/full_flow_offline/platform/ameba_dsp</ListEntry>
+                        </value>
+                    </StringListMapEntry>
+                </StringListMapOptions>
+            </PreprocessorOptions>
+        </value>
+    </OverriddenSettingsEntry>
+</OverriddenSettings>

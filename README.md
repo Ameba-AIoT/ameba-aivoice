@@ -6,7 +6,7 @@ AIVoice is an offline AI solution developed by Realtek, including local algorith
 
 Note that this repository is not recommended for standalone use. Please use it with SDK ([ameba-rtos](https://github.com/Ameba-AIoT/ameba-rtos) or [ameba-dsp](https://github.com/Ameba-AIoT/ameba-dsp) or [ameba-linux](https://github.com/Ameba-AIoT/ameba-linux-manifest) ) based on the chosen SoC and OS.
 
-Documentation: [AIVoice Documentation](https://aiot.realmcu.com/docs/en/latest/rst_ai/aivoice/aivoice_overview/1_aivoice_overview_toprst.html)
+Documentation: [AIVoice Documentation](https://aiot.realmcu.com/en/latest/rst_rtos/rst_ai/aivoice/aivoice_overview/index.html)
 
 ### Supported SoCs
 

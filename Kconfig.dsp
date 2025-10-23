@@ -28,6 +28,10 @@ if AIVOICE_EN_MENU
             bool "afe_res_2mic70mm"
             select AFE_RES_2MIC70MM if WHC_HOST || WHC_NONE
 
+        config AFE_RES_CIRCLE3MIC50MM_MENU
+            bool "afe_res_3mic50mm"
+            select AFE_RES_CIRCLE3MIC50MM if WHC_HOST || WHC_NONE
+
     endchoice
 
     config SELECT_VAD_RESOURCE
@@ -133,6 +137,9 @@ config AFE_RES_2MIC50MM
     bool
 
 config AFE_RES_2MIC70MM
+    bool
+
+config AFE_RES_CIRCLE3MIC50MM
     bool
 
 config VAD_V7_200K

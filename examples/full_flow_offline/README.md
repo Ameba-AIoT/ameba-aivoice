@@ -192,9 +192,15 @@ Command ID40, 挂断电话
 
     *2.3 add librarys (-l)*
       * if use c library resources  
-        -laivoice -lafe_kernel -lkernel -lafe_res_2mic50mm -lvad -lkws -lasr -lfst -lcJSON -ltomlc99 -ltflite_micro -lxa_nnlib -lhifi5_dsp -laivoice_hal
+        -laivoice -lafe_kernel -lkernel -lafe_res_2mic50mm -lvad_v7_200K -lkws_xiaoqiangxiaoqiang_nihaoxiaoqiang_v4_300K -lasr_cn_v8_2M -lfst_cn_cmd_ac40 -lcJSON -ltomlc99 -ltflite_micro -lxa_nnlib -lhifi5_dsp -laivoice_hal
       * if use binary resources  
         -laivoice -lafe_kernel -lkernel -lcJSON -ltomlc99 -ltflite_micro -lxa_nnlib -lhifi5_dsp -laivoice_hal
+
+    *2.4 add symbols (-D)*
+      * if use c library resources  
+        USE_BINARY_RESOURCE 0
+      * if use binary resources  
+        USE_BINARY_RESOURCE 1
 
     **NOTE: if multiple definition of `app_example` occurs, please exclude other examples when build this example**
 
@@ -202,8 +208,16 @@ Command ID40, 挂断电话
 
 1. **add all aivoice example dependencies and linked resources into project**
 
+    * if use c library resources
+
     ```sh
     ./add_all_settings_to_project.sh /path/to/project_dsp/ full_flow_offline
+    ```
+
+    * if use binary resources
+  
+    ```sh
+    ./add_all_settings_to_project.sh /path/to/project_dsp/ full_flow_offline --no_lib_resources
     ```
 
     this shell script inserts every dependencies and linked resources into `Release.bts` and `.project`.

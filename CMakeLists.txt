@@ -30,11 +30,13 @@ elseif(CONFIG_AFE_RES_2MIC50MM)
     set(AFE_RESOURCE afe_res_2mic50mm)
 elseif(CONFIG_AFE_RES_2MIC70MM)
     set(AFE_RESOURCE afe_res_2mic70mm)
+elseif(CONFIG_AFE_RES_CIRCLE3MIC50MM)
+    set(AFE_RESOURCE afe_res_circle3mic50mm)
 endif()
 
-set(KWS_RESOURCE kws)
+set(KWS_RESOURCE kws_xiaoqiangxiaoqiang_nihaoxiaoqiang_v4_300K)
 if(CONFIG_KWS_RES_CUSTOM)
-    set(KWS_RESOURCE kws_custom)
+    set(KWS_RESOURCE kws_cn_customized_v3_750K)
 endif()
 
 if(CONFIG_AMEBADPLUS)
@@ -43,8 +45,8 @@ if(CONFIG_AMEBADPLUS)
         ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8721dx_km4/libafe_kernel.a
         ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8721dx_km4/libafe_res_1mic.a
         ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8721dx_km4/libkernel.a
-        ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8721dx_km4/libkws.a
-        ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8721dx_km4/libvad.a
+        ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8721dx_km4/libkws_xiaoqiangxiaoqiang_nihaoxiaoqiang_v4_300K.a
+        ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8721dx_km4/libvad_v7_200K.a
         ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8721dx_km4/libtomlc99.a
         ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8721dx_km4/libkissfft.a
         ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8721dx_km4/libaivoice_hal.a
@@ -55,11 +57,11 @@ elseif(CONFIG_AMEBASMART)
         ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8730e_ca32_freertos/libafe_kernel.a
         ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8730e_ca32_freertos/lib${AFE_RESOURCE}.a
         ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8730e_ca32_freertos/libkernel.a
-        ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8730e_ca32_freertos/libfst.a
+        ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8730e_ca32_freertos/libfst_cn_cmd_ac40.a
         ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8730e_ca32_freertos/lib${KWS_RESOURCE}.a
-        ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8730e_ca32_freertos/libasr.a
-        ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8730e_ca32_freertos/libvad.a
-        ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8730e_ca32_freertos/libnnns.a
+        ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8730e_ca32_freertos/libasr_cn_v8_2M.a
+        ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8730e_ca32_freertos/libvad_v7_200K.a
+        ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8730e_ca32_freertos/libnnns_com_v7_35K.a
         ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8730e_ca32_freertos/libtomlc99.a
         ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8730e_ca32_freertos/libNE10.a
         ${c_CMPT_AIVOICE_DIR}/prebuilts/ameba_rtos/rtl8730e_ca32_freertos/libaivoice_hal.a

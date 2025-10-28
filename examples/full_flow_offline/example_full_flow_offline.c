@@ -25,8 +25,6 @@
 /*****************************************************************************/
 //            aivoive binary resource configuration
 /*****************************************************************************/
-#define USE_BINARY_RESOURCE (0)
-
 #if USE_BINARY_RESOURCE
 /* modify these values ​​according to facts. */
 // flash start address used to download aivoice_models.bin

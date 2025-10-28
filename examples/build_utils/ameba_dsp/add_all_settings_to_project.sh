@@ -25,8 +25,9 @@ fi
 
 PROJECT_DIR=$1
 EXAMPLE_NAME=$2
+LIB_RESOURCES_FLAG=$3
 
 EXAMPLE_DIR=${SCRIPT_DIR}/../../${EXAMPLE_NAME}
 
-python ${SCRIPT_DIR}/add_deps.py --project_dir ${PROJECT_DIR}/ --deps_xml ${EXAMPLE_DIR}/platform/ameba_dsp/${EXAMPLE_NAME}_dependencies.xml
+python ${SCRIPT_DIR}/add_deps.py --project_dir ${PROJECT_DIR}/ --deps_xml ${EXAMPLE_DIR}/platform/ameba_dsp/${EXAMPLE_NAME}_dependencies.xml ${LIB_RESOURCES_FLAG}
 python ${SCRIPT_DIR}/add_link.py --project_dir ${PROJECT_DIR}/ --lr_xml ${EXAMPLE_DIR}/platform/ameba_dsp/${EXAMPLE_NAME}_linked_resources.xml

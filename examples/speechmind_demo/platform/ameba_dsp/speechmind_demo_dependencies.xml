@@ -1,0 +1,19 @@
+<OverriddenSettings>
+    <OverriddenSettingsEntry>
+        <key>speechmind_demo</key>
+        <value path="speechmind_demo">
+            <PreprocessorOptions>
+                <StringListMapOptions>
+                    <StringListMapEntry>
+                        <key>Includes</key>
+                        <value flag="-I" inheritance="prepend">
+
+                            <ListEntry>${workspace_loc}/../lib/aivoice/examples/speechmind_demo/platform/ameba_dsp</ListEntry>
+                            <ListEntry>${workspace_loc}/../lib/aivoice/examples/speechmind_demo/platform/ameba_dsp/aidl</ListEntry>
+                        </value>
+                    </StringListMapEntry>
+                </StringListMapOptions>
+            </PreprocessorOptions>
+        </value>
+    </OverriddenSettingsEntry>
+</OverriddenSettings>

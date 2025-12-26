@@ -68,21 +68,34 @@ static uint32_t g_usr_data;
 // flash start address used to download aivoice_models.bin
 #define AIVOICE_BIN_FLASH_ADDRESS_START (0x08A00000)
 // bytes of aivoice_models.bin
-#define AIVOICE_BIN_SIZE (4*1024*1024)
+#define MAX_AIVOICE_BIN_SIZE (4*1024*1024)
 #endif
 
 #if USE_BINARY_RESOURCE
 __attribute__((weak))
 const char *aivoice_load_resource_from_flash(void)
 {
-	char *aivoice_resources = (char *)malloc(AIVOICE_BIN_SIZE);
+    const uint8_t *flash_header = (const uint8_t *)AIVOICE_BIN_FLASH_ADDRESS_START;
+    uint32_t bin_size = 0;
+
+    bin_size = ((uint32_t)flash_header[15] << 24) |
+               ((uint32_t)flash_header[14] << 16) |
+               ((uint32_t)flash_header[13] << 8)  |
+               ((uint32_t)flash_header[12]);
+
+    if (bin_size == 0 || bin_size > MAX_AIVOICE_BIN_SIZE) { // 限制最大 4MB
+        LOGE("Invalid bin size: %d, max %d\n", bin_size, MAX_AIVOICE_BIN_SIZE);
+        return NULL;
+    }
+
+    char *aivoice_resources = (char *)malloc(bin_size);
 	if (!aivoice_resources) {
 		LOGE("malloc failed for aivoice resource buffer\n");
 		return NULL;
 	}
 
-	LOGI("load aivoice resource from flash to memory\n");
-	memcpy(aivoice_resources, (const void *)AIVOICE_BIN_FLASH_ADDRESS_START, AIVOICE_BIN_SIZE);
+	LOGI("Load aivoice resource from flash (size=%d bytes)\n", bin_size);
+	memcpy(aivoice_resources, (const void *)AIVOICE_BIN_FLASH_ADDRESS_START, bin_size);
 	return aivoice_resources;
 }
 #endif
@@ -247,6 +260,7 @@ static HRESULT *Voice_Create(VOICE_RPC_INIT *pParam, RPC_STRUCT *pRpcStruct, HRE
 		*pRes = -1;
 		return pRes;
 	}
+
 	Parcel_IpcSetData(parcel, data, length, Voice_ParcelRelease);
 
 	struct afe_config afe_param;
@@ -318,7 +332,6 @@ static HRESULT *Voice_Create(VOICE_RPC_INIT *pParam, RPC_STRUCT *pRpcStruct, HRE
 	}
 	LOGI("aivoice resource start address %p\n", config.resource);
 #endif
-
 	g_handle = g_aivoice->create(&config);
 	if (!g_handle) {
 		*pRes = -1;

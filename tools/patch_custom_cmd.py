@@ -9,6 +9,7 @@ Usage:
 
 Supported Chip Models:
     - RTL8713E
+    - RTL8726E
     - RTL8730E
 
 Example:
@@ -127,6 +128,11 @@ def main():
         sys.exit(1)
 
     chip = sys.argv[1].upper()
+
+    # Replace RTL8726E with RTL8713E
+    if chip == "RTL8726E":
+        chip = "RTL8713E"
+
     apply_patches(chip)
 
 if __name__ == '__main__':

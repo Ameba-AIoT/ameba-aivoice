@@ -1,90 +1,128 @@
+# Platform configs are defined in soc/*/project/Kconfig
+
 config AIVOICE_EN_MENU
     bool "Enable AIVoice"
+    depends on AMEBADPLUS || AMEBAGREEN2 || (AMEBALITE && DSP_EN) || AMEBASMART
     select AIVOICE_EN if WHC_HOST || WHC_NONE
-    select TFLITE_MICRO_EN if WHC_HOST || WHC_NONE
+    select TFLITE_MICRO_EN if (WHC_HOST || WHC_NONE) && !AMEBALITE
 
 if AIVOICE_EN_MENU
+
+    # AFE Resource Selection
     choice
         prompt "Select AFE Resource"
+        default AFE_RES_1MIC_MENU if (AMEBADPLUS || AMEBAGREEN2)
         default AFE_RES_2MIC50MM_MENU
 
         config AFE_RES_1MIC_MENU
             bool "afe_res_1mic"
+            depends on AMEBADPLUS || AMEBAGREEN2 || AMEBALITE || AMEBASMART
             select AFE_RES_1MIC if WHC_HOST || WHC_NONE
 
         config AFE_RES_2MIC30MM_MENU
             bool "afe_res_2mic30mm"
+            depends on AMEBALITE || AMEBASMART
             select AFE_RES_2MIC30MM if WHC_HOST || WHC_NONE
 
         config AFE_RES_2MIC50MM_MENU
             bool "afe_res_2mic50mm"
+            depends on AMEBALITE || AMEBASMART
             select AFE_RES_2MIC50MM if WHC_HOST || WHC_NONE
 
         config AFE_RES_2MIC70MM_MENU
             bool "afe_res_2mic70mm"
+            depends on AMEBALITE || AMEBASMART
             select AFE_RES_2MIC70MM if WHC_HOST || WHC_NONE
 
         config AFE_RES_CIRCLE3MIC50MM_MENU
             bool "afe_res_3mic50mm"
+            depends on AMEBALITE || AMEBASMART
             select AFE_RES_CIRCLE3MIC50MM if WHC_HOST || WHC_NONE
     endchoice
 
+    # VAD Resource Selection
     choice
         prompt "Select VAD Resource"
+        default VAD_V8_60K_MENU if (AMEBADPLUS || AMEBAGREEN2)
         default VAD_V7_200K_MENU
 
         config VAD_V7_200K_MENU
             bool "vad_v7_200K"
+            depends on AMEBALITE || AMEBASMART
             select VAD_V7_200K if WHC_HOST || WHC_NONE
 
         config VAD_V8_60K_MENU
             bool "vad_v8_60K"
+            depends on AMEBADPLUS || AMEBAGREEN2 || AMEBALITE || AMEBASMART
             select VAD_V8_60K if WHC_HOST || WHC_NONE
 
         config VAD_V9_208K_MENU
             bool "vad_v9_208K"
+            depends on AMEBALITE || AMEBASMART
             select VAD_V9_208K if WHC_HOST || WHC_NONE
 
         config VAD_V11_208K_MENU
             bool "vad_v11_208K"
+            depends on AMEBALITE || AMEBASMART
             select VAD_V11_208K if WHC_HOST || WHC_NONE
     endchoice
 
+    # KWS Resource Selection
     choice
         prompt "Select KWS Resource"
+        default KWS_XIAOQIANGXIAOQIANG_NIHAOXIAOQIANG_V5_125K_MENU if (AMEBADPLUS || AMEBAGREEN2)
         default KWS_XIAOQIANGXIAOQIANG_NIHAOXIAOQIANG_V4_300K_MENU
 
         config KWS_XIAOQIANGXIAOQIANG_NIHAOXIAOQIANG_V4_300K_MENU
             bool "kws_xiaoqiangxiaoqiang_nihaoxiaoqiang_v4_300K"
+            depends on AMEBALITE || AMEBASMART
             select KWS_XIAOQIANGXIAOQIANG_NIHAOXIAOQIANG_V4_300K if WHC_HOST || WHC_NONE
 
         config KWS_XIAOQIANGXIAOQIANG_NIHAOXIAOQIANG_V5_125K_MENU
             bool "kws_xiaoqiangxiaoqiang_nihaoxiaoqiang_v5_125K"
+            depends on AMEBADPLUS || AMEBAGREEN2 || AMEBALITE || AMEBASMART
             select KWS_XIAOQIANGXIAOQIANG_NIHAOXIAOQIANG_V5_125K if WHC_HOST || WHC_NONE
 
         config KWS_CN_CUSTOMIZED_V3_750K_MENU
             bool "kws_cn_customized_v3_750K"
+            depends on AMEBALITE || AMEBASMART
             select KWS_CN_CUSTOMIZED_V3_750K if WHC_HOST || WHC_NONE
 
         config KWS_CN_CUSTOMIZED_V5_886K_MENU
             bool "kws_cn_customized_v5_886K"
+            depends on AMEBALITE || AMEBASMART
             select KWS_CN_CUSTOMIZED_V5_886K if WHC_HOST || WHC_NONE
     endchoice
 
+    # ASR Resource Selection
     choice
         prompt "Select ASR Resource"
         default ASR_CN_V8_2M_MENU
 
         config ASR_CN_V8_2M_MENU
             bool "asr_cn_v8_2M"
+            depends on AMEBALITE || AMEBASMART
             select ASR_CN_V8_2M if WHC_HOST || WHC_NONE
 
         config ASR_CN_V10_1M_MENU
             bool "asr_cn_v10_1M"
+            depends on AMEBALITE || AMEBASMART
             select ASR_CN_V10_1M if WHC_HOST || WHC_NONE
     endchoice
+
+    # FST Resource Selection (AMEBALITE only)
+    choice
+        prompt "Select FST Resource" if AMEBALITE
+
+        config FST_CN_CMD_AC40_MENU
+            bool "fst_cn_cmd_ac40"
+            depends on AMEBALITE
+            select FST_CN_CMD_AC40 if WHC_HOST || WHC_NONE
+    endchoice
+
 endif
 
+# Bool config definitions
 config AIVOICE_EN
     bool
 
@@ -131,4 +169,7 @@ config ASR_CN_V8_2M
     bool
 
 config ASR_CN_V10_1M
+    bool
+
+config FST_CN_CMD_AC40
     bool

@@ -16,6 +16,7 @@ Documentation: [AIVoice Documentation](https://aiot.realmcu.com/en/latest/rtos/a
 | RTL8730E          | RTOS  | CA32      | ![alt text][supported] | [ameba-rtos](https://github.com/Ameba-AIoT/ameba-rtos)       |
 | RTL8713E/RTL8726E | RTOS  | HiFi5 DSP | ![alt text][supported] | [ameba-dsp](https://github.com/Ameba-AIoT/ameba-dsp)         |
 | RTL8721Dx         | RTOS  | KM4       | ![alt text][supported] | [ameba-rtos](https://github.com/Ameba-AIoT/ameba-rtos)       |
+| RTL8721F          | RTOS  | KM4       | ![alt text][supported] | [ameba-rtos](https://github.com/Ameba-AIoT/ameba-rtos)       |
 
 [supported]: https://img.shields.io/badge/-supported-green "supported"
 

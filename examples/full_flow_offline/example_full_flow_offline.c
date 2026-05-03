@@ -10,7 +10,7 @@
 /*****************************************************************************/
 //            aivoice flow and afe ssl configuration
 /*****************************************************************************/
-#if AIVOICE_TARGET_AMEBADPLUS
+#if AIVOICE_TARGET_LOW_RESOURCE
 #define MIC_NUM                     (1)
 #define AIVOICE_ENABLE_AFE_SSL      (0)
 #else
@@ -155,8 +155,8 @@ void aivoice_algo_offline_example(void)
 	 * Select the aivoice flow you want to use.
 	 * Refer to the end of aivoice_interface.h to see which flows are supported.
 	 */
-#if AIVOICE_TARGET_AMEBADPLUS
-	// amebadplus supports afe+kws+vad flow
+#if AIVOICE_TARGET_LOW_RESOURCE
+	// RTL8721Dx/RTL8721F supports afe+kws+vad flow
 	const struct rtk_aivoice_iface *aivoice = &aivoice_iface_afe_kws_vad_v1;
 #else
 	const struct rtk_aivoice_iface *aivoice = &aivoice_iface_full_flow_v1;
@@ -188,7 +188,7 @@ void aivoice_algo_offline_example(void)
 	 *
 	 * afe_config.mic_array MUST match the afe resource you linked.
 	 */
-#if AIVOICE_TARGET_AMEBADPLUS
+#if AIVOICE_TARGET_LOW_RESOURCE
 	struct afe_config afe_param = AFE_CONFIG_ASR_DEFAULT_1MIC();
 #else
 	struct afe_config afe_param = AFE_CONFIG_ASR_DEFAULT_2MIC50MM();
@@ -208,7 +208,7 @@ void aivoice_algo_offline_example(void)
 	 * it is recommend to use the default configure,
 	 * if you do not know the meaning of these configure parameters.
 	 */
-#if AIVOICE_TARGET_AMEBADPLUS // amebadplus support kws single mode only
+#if AIVOICE_TARGET_LOW_RESOURCE // 1mic only platform supports kws single mode only
 	struct kws_config kws_param = KWS_CONFIG_DEFAULT();
 	config.kws = &kws_param;    // can be NULL
 	config.kws->mode = KWS_SINGLE_MODE;

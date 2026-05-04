@@ -15,16 +15,17 @@ The pre-recorded audio used in this example is a 3 channel audio, channel 1 and 
 ## Supported IC
 
 1. RTL8721Dx KM4 (SDK: ameba-rtos)
-2. RTL8726E DSP (SDK: ameba-dsp)
-3. RTL8713E DSP (SDK: ameba-dsp)
-4. RTL8730E CA32 (SDK: ameba-rtos)
-5. RTL8730E CA32 Linux (SDK:ameba-linux)
+2. RTL8721F KM4 (SDK: ameba-rtos)
+3. RTL8726E DSP (SDK: ameba-dsp)
+4. RTL8713E DSP (SDK: ameba-dsp)
+5. RTL8730E CA32 (SDK: ameba-rtos)
+6. RTL8730E CA32 Linux (SDK:ameba-linux)
 
 ## Build Example
 
 ### Using SDK ameba-rtos
 
-#### AmebaSmart PSRAM
+#### RTL8730E PSRAM
 
 1. **Configure menuconfig**:
     `cd amebasmart_gcc_project`
@@ -40,7 +41,7 @@ The pre-recorded audio used in this example is a 3 channel audio, channel 1 and 
    * Refer to the SDK Examples section of the online documentation to generate images.
    * `Download` images to board by Ameba Image Tool.
 
-##### Expected Result (Amebasmart Psram)
+##### Expected Result (RTL8730E Psram)
 
 **full_flow_offline result**
 ```
@@ -114,7 +115,7 @@ Command ID40, 挂断电话
 [user] voice angle 90.0
 ```
 
-#### AmebaDplus KM4
+#### RTL8721Dx/RTL8721F KM4
 
 > **Note: This chip only supports single microphone input and does not support ASR functionality.**
 > **Default: afe_kws_vad flow with 1mic array afe resource**
@@ -128,7 +129,7 @@ Command ID40, 挂断电话
    * Refer to the SDK Examples section of the online documentation to generate images.
    * `Download` images to board by Ameba Image Tool.
 
-##### Expected Result (Amebadplus KM4)
+##### Expected Result (RTL8721Dx KM4)
 
 **full_flow_offline result**
 ```
@@ -137,7 +138,7 @@ Command ID40, 挂断电话
 [AIVOICE] rtk_aivoice_model vad version: vad_v8_opt
 [AIVOICE] rtk_aivoice_model kws version: kws_xqxq_v5_opt
 [AIVOICE] rtk_aivoice_log_format version: v2
-[user] afe output 1 channels raw audio, others: 
+[user] afe output 1 channels raw audio, others:
 [AIVOICE] [KWS] result: {"id":2,"keyword":"ni-hao-xiao-qiang","score":0.80648398399353027}
 [user] wakeup. {"id":2,"keyword":"ni-hao-xiao-qiang","score":0.80648398399353027}
 [user] vad. status = 1, offset = 1685
@@ -163,20 +164,20 @@ Command ID40, 挂断电话
     *2.2 add library search path (-L)*
     ```
     ${workspace_loc}/../lib/aivoice/prebuilts/lib/ameba_dsp/$(TARGET_CONFIG)
-    ${workspace_loc}/../lib/xa_nnlib/v2.3.0/bin/$(TARGET_CONFIG)/Release  
+    ${workspace_loc}/../lib/xa_nnlib/v2.3.0/bin/$(TARGET_CONFIG)/Release
     ${workspace_loc}/../lib/lib_hifi5/v3.1.0/bin/$(TARGET_CONFIG)
     ```
 
     *2.3 add librarys (-l)*
-      * if use c library resources  
+      * if use c library resources
         -laivoice -lafe_kernel -lkernel -lafe_res_2mic50mm -lvad_v7_200K -lkws_xiaoqiangxiaoqiang_nihaoxiaoqiang_v4_300K -lasr_cn_v8_2M -lfst_cn_cmd_ac40 -lcJSON -ltomlc99 -ltflite_micro -lxa_nnlib -lhifi5_dsp -laivoice_hal
-      * if use binary resources  
+      * if use binary resources
         -laivoice -lafe_kernel -lkernel -lcJSON -ltomlc99 -ltflite_micro -lxa_nnlib -lhifi5_dsp -laivoice_hal
 
     *2.4 add symbols (-D)*
-      * if use c library resources  
+      * if use c library resources
         USE_BINARY_RESOURCE 0
-      * if use binary resources  
+      * if use binary resources
         USE_BINARY_RESOURCE 1
 
     **NOTE: if multiple definition of `app_example` occurs, please exclude other examples when build this example**
@@ -192,7 +193,7 @@ Command ID40, 挂断电话
     ```
 
     * if use binary resources
-  
+
     ```sh
     ./add_all_settings_to_project.sh /path/to/project_dsp/ full_flow_offline --no_lib_resources
     ```
@@ -238,14 +239,14 @@ Command ID40, 挂断电话
                       ASR (asr_cn_v8_2M)  --->
           [*]     Select FST Resource
                       FST (fst_cn_cmd_ac40)  --->
-    
 
 
-#### Expected Result (Amebalite DSP)
 
-The expected result on amebalite dsp is the same as [Expected Result (Amebasmart Psram)](#expected-result-amebasmart-psram)
+#### Expected Result (RTL8726E/RTL8713E DSP)
 
-### Using SDK AmebaSmart Linux
+The expected result on amebalite dsp is the same as [Expected Result (RTL8730E Psram)](#expected-result-amebasmart-psram)
+
+### Using SDK RTL8730E Linux
 
 1. There are dependencies between libraries, refer to `./Makefile` and `rtk-aivoice-algo.bb`.
    bb file is `pgos/sources/yocto/meta-realtek/meta-sdk/recipes-rtk/aivoice/rtk-aivoice-algo.bb`.
@@ -253,9 +254,9 @@ The expected result on amebalite dsp is the same as [Expected Result (Amebasmart
 2. use ```bitbake rtk-aivoice-algo``` to compile the aivoice algo module,
    the generated executable is `rtk_aivoice_algo`.
 
-#### Expected Result (AmebaSmart Linux)
+#### Expected Result (RTL8730E Linux)
 
-The expected result on amebasmart linux is the same as [Expected Result (Amebasmart Psram)](#expected-result-amebasmart-psram)
+The expected result on amebasmart linux is the same as [Expected Result (RTL8730E Psram)](#expected-result-amebasmart-psram)
 
 ### Pack Up Binary Resources
 

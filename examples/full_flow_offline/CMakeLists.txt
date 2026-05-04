@@ -11,7 +11,7 @@ if(CONFIG_AMEBASMART)
         ${CURRENT_LIB_NAME} PRIVATE
         testwav_3c.c
     )
-elseif(CONFIG_AMEBADPLUS)
+elseif(CONFIG_AMEBADPLUS OR CONFIG_AMEBAGREEN2)
     target_sources(
         ${CURRENT_LIB_NAME} PRIVATE
         platform/ameba_rtos/testwav_2c.c
@@ -39,11 +39,11 @@ target_compile_definitions(
 if(CONFIG_AMEBASMART)
     target_compile_definitions(
         ${CURRENT_LIB_NAME} PRIVATE
-        AIVOICE_TARGET_AMEBADPLUS=0
+        AIVOICE_TARGET_LOW_RESOURCE=0
     )
-elseif(CONFIG_AMEBADPLUS)
+elseif(CONFIG_AMEBADPLUS OR CONFIG_AMEBAGREEN2)
     target_compile_definitions(
         ${CURRENT_LIB_NAME} PRIVATE
-        AIVOICE_TARGET_AMEBADPLUS=1
+        AIVOICE_TARGET_LOW_RESOURCE=1
     )
 endif()

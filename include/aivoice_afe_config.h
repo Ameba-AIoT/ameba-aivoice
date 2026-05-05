@@ -97,7 +97,7 @@ typedef struct afe_config {
 	afe_ns_aggressive_mode_e ns_aggressive_mode;        // higher mode means more stationary noise suppression but more distortion
 
 	// AGC module parameter
-	int agc_fixed_gain;                     // AGC fixed gain(dB) applied on AFE output, the value should be in [0, 18].
+	int agc_fixed_gain;                     // AGC fixed gain(dB) applied on AFE output, the value should be in [0, 40].
 	bool enable_adaptive_agc;               // adaptive AGC switch. Only supports voice communication mode.
 
 	// SSL module parameter

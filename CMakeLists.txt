@@ -79,7 +79,6 @@ ameba_list_append(public_libraries
     ${AIVOICE_LIB_DIR}/lib${KWS_RESOURCE}.a
     ${AIVOICE_LIB_DIR}/lib${VAD_RESOURCE}.a
     ${AIVOICE_LIB_DIR}/libtomlc99.a
-    ${AIVOICE_LIB_DIR}/libkissfft.a
     # ${AIVOICE_LIB_DIR}/libcJSON.a
     ${AIVOICE_LIB_DIR}/libaivoice_hal.a
 )
@@ -90,6 +89,10 @@ if(CONFIG_AMEBASMART)
         ${AIVOICE_LIB_DIR}/libfst_cn_cmd_ac40.a
         ${AIVOICE_LIB_DIR}/libnnns_com_v7_35K.a
         ${AIVOICE_LIB_DIR}/lib${ASR_RESOURCE}.a
+    )
+else()
+    ameba_list_append(public_libraries
+        ${AIVOICE_LIB_DIR}/libkissfft.a
     )
 endif()
 

@@ -66,7 +66,11 @@ if(CONFIG_AMEBAGREEN2)
 elseif(CONFIG_AMEBADPLUS)
     set(PLATFORM_DIR rtl8721dx_km4)
 elseif(CONFIG_AMEBASMART)
-    set(PLATFORM_DIR rtl8730e_ca32_freertos)
+    if(c_MCU_TYPE STREQUAL "ca32")
+        set(PLATFORM_DIR rtl8730e_ca32_freertos)
+    else()
+        set(PLATFORM_DIR rtl8730e_km4)
+    endif()
 endif()
 
 set(AIVOICE_LIB_DIR ${c_CMPT_AIVOICE_DIR}/prebuilts/lib/ameba_rtos/${PLATFORM_DIR})
@@ -79,17 +83,20 @@ ameba_list_append(public_libraries
     ${AIVOICE_LIB_DIR}/lib${KWS_RESOURCE}.a
     ${AIVOICE_LIB_DIR}/lib${VAD_RESOURCE}.a
     ${AIVOICE_LIB_DIR}/libtomlc99.a
-    ${AIVOICE_LIB_DIR}/libkissfft.a
     # ${AIVOICE_LIB_DIR}/libcJSON.a
     ${AIVOICE_LIB_DIR}/libaivoice_hal.a
 )
 
-if(CONFIG_AMEBASMART)
+if(CONFIG_AMEBASMART AND c_MCU_TYPE STREQUAL "ca32")
     ameba_list_append(public_libraries
         ${AIVOICE_LIB_DIR}/libNE10.a
         ${AIVOICE_LIB_DIR}/libfst_cn_cmd_ac40.a
         ${AIVOICE_LIB_DIR}/libnnns_com_v7_35K.a
         ${AIVOICE_LIB_DIR}/lib${ASR_RESOURCE}.a
+    )
+else()
+    ameba_list_append(public_libraries
+        ${AIVOICE_LIB_DIR}/libkissfft.a
     )
 endif()
 

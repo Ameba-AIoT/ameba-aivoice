@@ -2,7 +2,7 @@ name: Pull Request on Branch Push
 on:
   push:
     branches:
-    - main_sync_*
+    - release/v1.2_sync_*
 
 jobs:
   auto-pull-request:
@@ -22,8 +22,8 @@ jobs:
     - name: Set branch as environment variable
       run: |
         echo "CURRENT_DATE=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
-        echo "CURRENT_BRANCH=${{ github.actor }}:${GITHUB_REF##*/}" >> $GITHUB_ENV
-        echo "PULL_REQUEST_FROM_BRANCH=${{ github.actor }}:${GITHUB_REF##*/}" >> $GITHUB_ENV
+        echo "CURRENT_BRANCH=${{ github.actor }}:release/${GITHUB_REF##*/}" >> $GITHUB_ENV
+        echo "PULL_REQUEST_FROM_BRANCH=${{ github.actor }}:release/${GITHUB_REF##*/}" >> $GITHUB_ENV
   
     - name: Get current commit message
       run: |
@@ -39,7 +39,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PULL_REQUEST_TOKEN: ${{ secrets.PAT_TOKEN }}
-        PULL_REQUEST_BRANCH: "main"
+        PULL_REQUEST_BRANCH: "release/v1.2"
         PULL_REQUEST_REPOSITORY: Ameba-AIoT/ameba-aivoice
         PULL_REQUEST_REVIEWERS: paris-chen
         PASS_IF_EXISTS: true

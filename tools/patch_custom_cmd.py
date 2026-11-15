@@ -103,7 +103,7 @@ def apply_patches(chip):
                     print(f"Warning: Pattern '{pattern}' not found in file '{filepath}'.")
 
             if modified:
-                with open(filepath, 'w', encoding='utf-8') as f:
+                with open(filepath, 'w', encoding='utf-8', newline='') as f:
                     f.write(content)
                 print(f"Successfully patched file: {filepath}")
             else:
